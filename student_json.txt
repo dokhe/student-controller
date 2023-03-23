@@ -1,0 +1,5 @@
+{
+	"name":"kiko",
+	"age":35,
+	"admissionNumber":k41234
+}
