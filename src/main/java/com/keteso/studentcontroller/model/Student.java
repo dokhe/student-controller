@@ -3,10 +3,9 @@ package com.keteso.studentcontroller.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
 @Entity
 @Data
-@Table(name = "STUDENTS_DATA")
+@Table(name = "student_data")
 public class Student {
 
     @Id

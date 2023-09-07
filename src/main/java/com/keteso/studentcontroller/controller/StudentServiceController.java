@@ -12,15 +12,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-
+@RequestMapping("/api/v1")
 public class StudentServiceController {
     @Autowired
     private StudentService studentService;
+//    Create student
     @RequestMapping(value = "/students", method = RequestMethod.POST)
     public ResponseEntity<Object> createStudent(@RequestBody Student student){
         student = studentService.createStudent(student);
         return new ResponseEntity<>("Student is created successfully with id = " +student.getId(), HttpStatus.CREATED);
     }
+//    Update student with id
     @RequestMapping(value = "/students/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Object> updateStudent(@PathVariable("id") int id,
         @RequestBody Student student){
@@ -34,6 +36,7 @@ public class StudentServiceController {
             throw new StudentNotfoundException();
         }
     }
+//    Get student with Id
     @RequestMapping(value = "/students/{id}", method = RequestMethod.GET)
     public ResponseEntity<Object> getStudent(@PathVariable("id") int id)
     {
@@ -47,11 +50,13 @@ public class StudentServiceController {
             throw new StudentNotfoundException();
         }
     }
+//    Get list of all students
     @RequestMapping(value = "/students", method = RequestMethod.GET)
     public ResponseEntity<Object> getStudents(){
         List<Student> studentList = studentService.getStudents();
         return new ResponseEntity<>(studentList, HttpStatus.OK);
     }
+//    Delete students with id
     @RequestMapping(value = "/students/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> deleteStudent(@PathVariable("id")int id){
         boolean isStudentExist =studentService.isStudentExist(id);
